@@ -1,29 +1,35 @@
 program calculadora
-    integer :: operador
-    ! call system('clear')
-    print *, '┌-------------------------------┐'
-    print *, '| 1 - SOMA                      |'
-    print *, '| 2 - SUBTRAÇÃO                 |'
-    print *, '| 3 - MULTIPLICAÇÃO             |'
-    print *, '| 4 - DIVISÃO                   |'
-    print *, '| 5 - ELEVAR NUMERO AO QUADRADO |'
-    print *, '| 6 - ELEVAR NUMERO AO CUBO     |'
-    print *, '| 7 - RAIZ QUADRADA             |'
-    print *, '| 8 - RAIZ CÚBICA               |'
-    print *, '| 9 - LOGARITMO                 |'
-    print *, '└-------------------------------┘'
-    read (*,*) operador
+    integer :: operador = 999
+    do
+        ! call system('clear')
+        print *, '┌-------------------------------┐'
+        print *, '| 1 - SOMA                      |'
+        print *, '| 2 - SUBTRAÇÃO                 |'
+        print *, '| 3 - MULTIPLICAÇÃO             |'
+        print *, '| 4 - DIVISÃO                   |'
+        print *, '| 5 - ELEVAR NUMERO AO QUADRADO |'
+        print *, '| 6 - ELEVAR NUMERO AO CUBO     |'
+        print *, '| 7 - RAIZ QUADRADA             |'
+        print *, '| 8 - RAIZ CÚBICA               |'
+        print *, '| 9 - LOGARITMO                 |'
+        print *, '| 0 - SAIR                      |'
+        print *, '└-------------------------------┘'
+        read (*,*) operador
 
-    print *,    '┌------------------------------------------------------------------┐'    
+        print *,    '┌------------------------------------------------------------------┐'    
 
-    if (operador .LE. 4) then
-        CALL DOIS_VALORES(operador)
-    else
-        CALL UM_VALOR(operador)
-    end if 
-    
-    print *,    '└------------------------------------------------------------------┘'
-    
+        if (operador .EQ. 0) then
+            print *,    '| ***                   PROCESSO FINALIZADO                    *** |'
+            print *,    '└------------------------------------------------------------------┘'
+            EXIT
+        else if(operador .LE. 4) then
+            CALL DOIS_VALORES(operador)
+        else
+            CALL UM_VALOR(operador)
+        end if 
+        
+        print *,    '└------------------------------------------------------------------┘'
+    end do
 end program calculadora
 SUBROUTINE DOIS_VALORES(op) 
     IMPLICIT NONE

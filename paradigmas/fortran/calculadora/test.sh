@@ -14,6 +14,7 @@ for op in $(seq 1 9);do
     echo ${op}      >        ${INPUT_FILE}
     echo "Numeros: "
     echo "2 3"      | tee -a ${INPUT_FILE}
+    echo "0"        | tee -a ${INPUT_FILE}
     ./my_program <        ${INPUT_FILE}
     echo  '\n\n\n'
 done
