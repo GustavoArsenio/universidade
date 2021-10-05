@@ -1,5 +1,8 @@
-import socket
+# Disponibilizado também em: https://github.com/GustavoArsenio/universidade/tree/main/sistemas_distribuidos/calculadora
+# Author : Gustavo Arsenio de Sousa
+# Data : 26/09/2021
 
+import socket
 
 TCP_IP = '127.0.0.1'
 TCP_PORT = 9998
@@ -16,5 +19,6 @@ s.send(MESSAGE.encode('utf-8'))
 data = s.recv(BUFFER_SIZE)
 
 print(f"""\n\n\t >>>>> {MESSAGE} = {data.decode('utf-8')} \n\n""")
+
 s.close()
 print(f"****    Fim a calculadora    ***")
