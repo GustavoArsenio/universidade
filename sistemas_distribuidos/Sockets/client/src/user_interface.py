@@ -2,17 +2,10 @@ import logging
 
 logger = logging.getLogger()
 
-class Request():
-    def __init__(self,method,data):
-        self.data   = data
-        self.method = method
-    
-    def json_format(self):
-        return {'data':self.data, 'method':self.method}
-
 class Interface():
-    def __init__(self,socket):
+    def __init__(self,socket,BUFFER_SIZE):
         self.socket = socket
+        self.BUFFER_SIZE = BUFFER_SIZE
         self.OPERATION_SELECTOR = {
             '1':self.add_op,
             '2':self.remove_op,
@@ -22,7 +15,11 @@ class Interface():
         self.data   = ''
     
     def enviar_req(self):
-        self.socket.send( str( {'method': self.method, 'data':self.data} ).encode('utf-8') )
+        request = {'method': self.method, 'data':self.data} 
+        logger.info(f' Requisicao : {request}')
+        self.socket.send( str( request ).encode('utf-8') )
+        data = self.socket.recv(self.BUFFER_SIZE).decode('utf-8')
+        logger.info(f' Resposta: {data}')
 
     def add_op(self):
         data = {}
@@ -33,19 +30,16 @@ class Interface():
 
         self.data   = data
         self.method = 'add'
-        pass
 
     def remove_op(self):
         nome = input(' Digite o Nome:')
         self.data   = nome
         self.method = 'remove'
-        pass
 
     def consult_op(self):
         nome = input(' Digite o Nome:')
         self.data   = nome
         self.method = 'read'
-        pass
 
     def render_op(self):
         return'''

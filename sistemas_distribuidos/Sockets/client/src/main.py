@@ -3,24 +3,30 @@
 # Data : 26/09/2021
 
 import socket
+import logging
 from user_interface import Interface
 
 print('Constantes')
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s [%(module)s:%(lineno)s] : %(message)s'
+)
+
 TCP_IP = '127.0.0.1'
 TCP_PORT = 9998
-BUFFER_SIZE = 4096
+BUFFER_SIZE = 4096 * 1024
 
 MODE = '__runtime__'
 
 
-print(' ABrindo Socket')
+print(' Abrindo Socket')
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((TCP_IP, TCP_PORT))
 
 print(' ** Inicializando processos ')
 
 if MODE == '__runtime__':
-    UI = Interface(socket=s)
+    UI = Interface(socket=s,BUFFER_SIZE=BUFFER_SIZE)
     print('running UI')
     UI.run_UI()
 
