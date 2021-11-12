@@ -24,7 +24,7 @@ logger = logging.getLogger()
 logger.info('Inicializando Constantes Conexão de Socket')
 TCP_IP = '127.0.0.1'
 TCP_PORT = 9998
-BUFFER_SIZE = 4096
+BUFFER_SIZE = 4096 * 1024
 
 COUNTER_WAIT = 0
 
@@ -72,6 +72,7 @@ while True:
             RESPONSE = 'Cliente não encontrado'
 
     logger.debug(f' Clientes:  { [ f" {item}: {value}" for item,value in gerenciador.clientes_dict.items()]}')
+    logger.info (f' Response:  {RESPONSE}')
     conn.send(RESPONSE.encode('utf-8'))
 
 # ========================== #
