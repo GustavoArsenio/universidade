@@ -8,11 +8,5 @@ aluno(jose).
 
 matricula(jose, engenharia).
 
-%// Ex1
-pegar_materias(Aluno, Materia) :-
-    matricula(Aluno,Curso),
-    curso(Curso,Materia).
-
-%// Ex2
 valida_materia(Materia, Curso) :-
     curso(Curso,Materia).
