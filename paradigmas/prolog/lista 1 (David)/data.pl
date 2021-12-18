@@ -8,6 +8,6 @@ aluno(jose).
 
 matricula(jose, engenharia).
 
-pegar_materias(Aluno, Materia) :-
-    matricula(Aluno,Curso),
-    curso(Curso,Materia).
+pegar_materias(Nome_Aluno, Nome_Materia) :-
+    matricula(Nome_Aluno,Curso),
+    curso(Curso,Nome_Materia).
